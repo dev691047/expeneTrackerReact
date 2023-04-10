@@ -1,17 +1,24 @@
+import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
+import Card from "../UI/Card"
+import { useState } from 'react';
 
-function ExpenseItem() {
-    const expenseDate=new Date(2023,4,4);
-    const expenseTitle='car insuranse';
-    const expenseAmount=2343;
+function ExpenseItem(props) {
+   const[title,setTitle]=useState(props.title);
+    function changeTitle(){
+        setTitle('changed');
+    }
+
   return (
-    <div className="expense-item">
-      <div>${expenseDate.toISOString()}</div>
-      <div className="expense-item__description">
-        <h2>${expenseTitle}</h2>
-        <div className="expense-item__price">${expenseAmount}</div>
+    <Card className='expense-item'>
+      <ExpenseDate date={props.date} />
+      <div className='expense-item__description'>
+        <h2>{title}</h2>
+        <div className='expense-item__price'>${props.amount}</div>
       </div>
-    </div>
+      <button onClick={changeTitle}>change title</button>
+      <button onClick={changeTitle}>Delete</button>
+    </Card>
   );
 }
 
