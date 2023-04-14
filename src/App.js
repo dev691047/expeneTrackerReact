@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import Expense from './components/Expenses/Expense';
 import NewExpense from './components/NewExpense/NewExpense';
 
@@ -27,17 +27,15 @@ const dummyData = [
 function App() {
 
   const[expenses,setExpenses]=useState(dummyData);
-  
-
-  const onsubmitFormdata=(expense)=>{
+   const onsubmitFormdata=(expense)=>{
     setExpenses((prevExpenses) => {
       return [...prevExpenses,expense];
     });
   }
 
-  useEffect(()=>{
-     console.log(expenses);
-  },[expenses])
+  // useEffect(()=>{
+  //    console.log(expenses);
+  // },[expenses])
 
   return (
     <div>
