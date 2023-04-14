@@ -11,31 +11,51 @@ const Expenses = (props) => {
   const filterChangeHandler = selectedYear => {
     setFilteredYear(selectedYear);
   };
+  const filteredExpenses = props.items.filter(v=> {
+    return v.date.getFullYear().toString() ===filteredYear;
+  })
+
 
   return (
     <div>
       <Card className='expenses'>
         <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-        <ExpenseItem
-          title={props.items[0].title}
-          amount={props.items[0].amount}
-          date={props.items[0].date}
-        />
-        <ExpenseItem
-          title={props.items[1].title}
-          amount={props.items[1].amount}
-          date={props.items[1].date}
-        />
-        <ExpenseItem
-          title={props.items[2].title}
-          amount={props.items[2].amount}
-          date={props.items[2].date}
-        />
-        <ExpenseItem
-          title={props.items[3].title}
-          amount={props.items[3].amount}
-          date={props.items[3].date}
-        />
+
+        {/* so this below line is clecking the first comndition and if it is true then after && the second condition get excuted and its a paragaph  */}
+        {filteredExpenses.length === 0 && <p>No result found.</p>}
+        {filteredExpenses.length===1  && filteredExpenses.map((v,i)=>(
+          
+            <ExpenseItem 
+              key={v.id}
+              title={v.title}
+              amount={v.amount}
+              date={v.date} 
+           />
+          ))}
+        {/* somewhat same thing is happening here */}
+        {filteredExpenses.length >1 && 
+          filteredExpenses.map((v,i)=>(
+            <ExpenseItem 
+              key={v.id}
+              title={v.title}
+              amount={v.amount}
+              date={v.date} 
+           />
+          ))
+        }
+
+        {/* we can also do it like this */}
+        {/* but there is a problen when assigingn a key value beacause if any data in list get deleted or modified or added the value of i get change and react get confused */}
+        {/* {
+          props.items.map((v,i)=>(
+            <ExpenseItem 
+              title={props.items[i].title}
+              amount={props.items[i].amount}
+              date={props.items[i].date} 
+           />
+          ))
+        } */}
+       
       </Card>
     </div>
   );

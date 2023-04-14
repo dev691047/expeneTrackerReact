@@ -12,7 +12,7 @@ const NewExpense=(props)=>{
         props.dataFromNewExpensetoApp(expenseDate);
     }
     return <div className="new-expense">
-       <ExpenseForm  dataFromExpenseFormtoNewExpense={onsubmitFormdata}/>
+       <ExpenseForm  onSaveExpenseData={onsubmitFormdata}/>
     </div>
 }
 export default NewExpense;
