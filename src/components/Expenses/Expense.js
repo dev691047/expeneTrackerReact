@@ -4,6 +4,7 @@ import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import ExpensesFilter from './ExpenseFilter';
 import './Expense.css';
+import ExpensesChart from './ExpensesChart';
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
@@ -23,17 +24,9 @@ const Expenses = (props) => {
 
         {/* so this below line is clecking the first comndition and if it is true then after && the second condition get excuted and its a paragaph  */}
         {filteredExpenses.length === 0 && <p>No result found.</p>}
-        {filteredExpenses.length===1  && filteredExpenses.map((v,i)=>(
-          
-            <ExpenseItem 
-              key={v.id}
-              title={v.title}
-              amount={v.amount}
-              date={v.date} 
-           />
-          ))}
+         <ExpensesChart expenses={filteredExpenses}/>
         {/* somewhat same thing is happening here */}
-        {filteredExpenses.length >1 && 
+        {filteredExpenses.length >0 && 
           filteredExpenses.map((v,i)=>(
             <ExpenseItem 
               key={v.id}
